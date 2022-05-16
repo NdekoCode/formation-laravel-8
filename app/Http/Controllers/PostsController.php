@@ -17,6 +17,6 @@ class PostsController extends Controller
                 'description' => "Mon super second description"
             ]
         ];
-        return view('articles', compact('posts'));
+        return view('pages.articles.articles', compact('posts'));
     }
 }

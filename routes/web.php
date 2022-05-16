@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
@@ -15,15 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('welcome'))->name('app_home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('posts', [PostsController::class, 'posts']);
-Route::get('projects', [ProjectsController::class, 'index']);
+Route::get('posts', [PostsController::class, 'posts'])->name('app_posts');
+Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects');
+Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 
 require __DIR__ . '/auth.php';

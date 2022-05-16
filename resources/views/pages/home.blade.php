@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Liste des projets</h1>
+    <h1>Page d'acceuil</h1>
 @endsection
