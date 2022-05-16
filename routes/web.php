@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('posts', fn () => response()->json([
-    'title' => "Mon super article",
-    'description' => "ma super description"
-]));
-
-Route::get('articles', fn () => view('articles'));
+Route::get('posts', [PostsController::class, 'posts']);
+Route::get('projects', [ProjectsController::class, 'index']);
 
 require __DIR__ . '/auth.php';
