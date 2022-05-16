@@ -21,4 +21,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('posts', fn () => response()->json([
+    'title' => "Mon super article",
+    'description' => "ma super description"
+]));
+
+Route::get('articles', fn () => view('articles'));
+
+require __DIR__ . '/auth.php';
