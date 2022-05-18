@@ -1,3 +1,6 @@
 @include('layouts.partials.header')
-@yield('content')
+<div class="container mx-auto max-w-7xl">
+
+    @yield('content')
+</div>
 @include('layouts.partials.footer')
