@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('posts', [PostsController::class, 'posts'])->name('app_posts');
+Route::get('post/{id}', [PostsController::class, 'show'])->name('app_postshow');
 Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects');
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 
