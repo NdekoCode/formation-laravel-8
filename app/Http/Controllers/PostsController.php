@@ -34,11 +34,26 @@ class PostsController extends Controller
     public function update(int $id)
     {
         $post = Post::findOrfail($id);
-        return view('pages.articles.update');
+        return view('pages.articles.update', compact('post'));
     }
-    public function store_update(int $id, Request $request)
+    public function store_update(Request $request, int $id)
     {
 
         $postData = $request->validate(['title' => 'required|min:3|max:150', 'content' => 'required|min:5']);
+        if ($postData) {
+
+
+            $post = Post::findOrfail($id);
+            $post->update($postData);
+            return redirect()->route('app_postshow', $post->id);
+        }
+        return back()->withInput();
+    }
+
+    public function delete(int $id)
+    {
+        $post = Post::findOrfail($id);
+        $post->delete();
+        return redirect()->route('app_posts');
     }
 }

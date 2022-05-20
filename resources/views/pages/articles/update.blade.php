@@ -18,10 +18,10 @@
                 <label for="content">Contenu de l'article</label>
                 <textarea class="offset-2 {{ $errors->has('content') ? 'ring-red-400 ring-offset-red-400' : 'ring-gray-300 ring-offset-blue-300' }} w-full rounded ring"
                     name="content" id="content" cols="30" rows="5"
-                    placeholder="Entrer le contenus de votre article">{{ old('content') }}</textarea>
+                    placeholder="Entrer le contenus de votre article">{{ $post->content ? $post->content : old('content') }}</textarea>
 
                 @if ($errors->has('content'))
-                    <div class="text-md text-red-500">{{ $post->content ? $post->content : old('content') }}</div>
+                    <div class="text-md text-red-500">{{ $errors->first('content') }}</div>
                 @endif
 
             </div>

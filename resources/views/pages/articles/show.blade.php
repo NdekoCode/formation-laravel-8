@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <div class="flex justify-end">
+    <div class="flex items-center justify-between">
+        <form action="{{ route('app_deletepost', $post->id) }}" method="post">
+            @csrf
+            <button type="submit" class="text-decoration-none mx-2 mt-2 rounded bg-red-600 px-3 py-2 text-white"
+                onclick="return confirm('voulez-vous vraiment supprimer {{ $post->title }}')">Supprimer
+                l'article</button>
+        </form>
         <a href="{{ route('app_postupdate', $post->id) }}"
             class="text-decoration-none mx-2 mt-2 rounded bg-blue-700 px-3 py-2 text-white">Modifier le post</a>
     </div>
