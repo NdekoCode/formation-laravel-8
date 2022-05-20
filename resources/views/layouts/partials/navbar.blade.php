@@ -8,6 +8,9 @@
             <li class="mx-3"><a class="text-md font-normal text-blue-500"
                     href="{{ route('app_contact') }}">Nous
                     contacter</a></li>
+
+            <li class="mx-3"><a class="text-md font-normal text-blue-500"
+                    href="{{ route('app_posts') }}">Posts</a></li>
             <li class="mx-3"><a class="text-md font-normal text-blue-500"
                     href="{{ route('app_projects') }}">Nos
                     projects</a></li>

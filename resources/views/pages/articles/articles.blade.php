@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="mb-3 text-3xl font-bold text-gray-800">Ma liste d'article</h1>
+    <div class="flex justify-end">
+        <a href="{{ route('app_postscreate') }}"
+            class="text-decoration-none mx-2 mt-2 rounded bg-blue-700 px-3 py-2 text-white">Ajouter un post</a>
+    </div>
     <div class="flex flex-wrap justify-center">
 
         @forelse ($posts as $post)
@@ -15,5 +19,8 @@
                 Aucun poste en base de donnée
             </div>
         @endforelse
+    </div>
+    <div>
+        {{ $posts->links() }}
     </div>
 @endsection
