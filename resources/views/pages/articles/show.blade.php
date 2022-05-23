@@ -12,6 +12,11 @@
     </div>
     <div class="m-1 p-3 shadow">
 
+        @if (!empty($post->image->path))
+            <div>
+                <img src="{{ $post->image->path }}" alt="">
+            </div>
+        @endif
         <h2 class="mb-3 text-2xl font-bold text-gray-800">{{ $post['title'] }}</h2>
         <p class="my-2 text-sm text-gray-600">{{ $post['content'] }}</p>
     </div>

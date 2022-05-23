@@ -9,7 +9,11 @@
 
         @forelse ($posts as $post)
             <div class="m-1 max-h-max min-h-[250px] w-3/12 basis-1/4 p-3 shadow">
-
+                @if (!empty($post->image->path))
+                    <div>
+                        <img src="{{ $post->image->path }}" alt="">
+                    </div>
+                @endif
                 <h2 class="mb-3 text-2xl font-bold text-gray-800"><a href="{{ route('app_postshow', $post->id) }}"
                         class="decoration text-blue-300 decoration-blue-300">{{ $post['title'] }}</a></h2>
                 <div class="flex items-center justify-between">
