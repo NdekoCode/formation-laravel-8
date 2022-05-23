@@ -22,6 +22,14 @@
 
                     <small class="mb-3 text-sm text-gray-400">{{ $post->created_at->diffForHumans() }}</small>
                 </div>
+                @forelse ($post->tags as $tag)
+                    <small class="m-1 mb-3 rounded bg-blue-400 px-1 text-sm text-gray-600"><a
+                            href="#">{{ $tag->name }}</a>
+                    </small>
+                @empty
+
+                    <small class="mb-3 rounded bg-gray-400 px-1 text-sm text-gray-600">Pas de tas</small>
+                @endforelse
                 <p class="my-2 text-sm text-gray-600">{{ $post['content'] }}</p>
             </div>
         @empty
