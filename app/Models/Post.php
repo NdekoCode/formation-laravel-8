@@ -10,10 +10,14 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ['title', 'content'];
 
-    // public function comments()
-    // {
-    //     return $this->hasMany(Comment::class);
-    // }
+    /**
+     * Relation polymorphique de type One to Many avec les commentaire càd un post a plusieurs commentaires et un commentaire appartient à un seul post(article)
+     *
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
     public function image()
     {
         return $this->hasOne(Image::class);

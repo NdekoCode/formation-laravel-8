@@ -20,7 +20,7 @@
         <h2 class="mb-3 text-2xl font-bold text-gray-800">{{ $post['title'] }}</h2>
         <p class="my-2 text-sm text-gray-600">{{ $post['content'] }}</p>
     </div>
-    {{-- @forelse ($post->comments as $comment)
+    @forelse ($post->comments as $comment)
         <small class="text-sm text-gray-400">Publier le
             {{ $post->created_at->format('d / m / Y') }}, {{ $comment->created_at->diffForHumans() }}</small>
         <p>{{ $comment->content }}</p>
@@ -28,7 +28,7 @@
         <div class="m-1 rounded border border-blue-500 bg-blue-200 p-2 text-blue-500">Pas de commentaire encore disponible
             sur cet article
         </div>
-    @endforelse --}}
+    @endforelse
     <div class="rounded-br-full bg-gray-200">
 
     </div>

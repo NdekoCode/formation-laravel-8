@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -56,5 +58,21 @@ class PostsController extends Controller
         $post = Post::findOrfail($id);
         $post->delete();
         return redirect()->route('app_posts')->with('error', "Votre article a été supprimer avec succés");
+    }
+
+    public function register()
+    {
+        $post = Post::find(11);
+        $vidoe = Video::find(1);
+        $comment1 = new Comment(['content' => 'Mon premier commentaire']);
+        $comment2 = new Comment(['content' => 'Mon second commentaire']);
+        $comment3 = new Comment(['content' => 'Mon troisieme commentaire']);
+
+        $post->comments()->saveMany([
+            $comment1, $comment2
+        ]);
+        $vidoe->comments()->save($comment3);
+
+        return 'LOl';
     }
 }
