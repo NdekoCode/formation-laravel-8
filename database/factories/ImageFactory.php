@@ -14,7 +14,7 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'path' => $this->faker->unique()->imageUrl(1024),
+            'path' => 'https://picsum.photos/id/' . $this->faker->unique()->numberBetween(237, 550) . '/1200/540',
             'post_id' => $this->faker->unique()->numberBetween(1, 50),
         ];
     }

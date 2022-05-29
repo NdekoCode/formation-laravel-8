@@ -9,6 +9,7 @@ class PostsController extends Controller
 {
     public function posts()
     {
+        // ON retourne les derniers post et on ajoute la pagination
         $posts = Post::latest()->paginate(9);
         return view('pages.articles.articles', compact('posts'));
     }
@@ -45,7 +46,7 @@ class PostsController extends Controller
 
             $post = Post::findOrfail($id);
             $post->update($postData);
-            return redirect()->route('app_postshow', $post->id);
+            return redirect()->route('app_postshow', $post->id)->with('success', "Votre article a été modifier avec succes");
         }
         return back()->withInput();
     }
@@ -54,6 +55,6 @@ class PostsController extends Controller
     {
         $post = Post::findOrfail($id);
         $post->delete();
-        return redirect()->route('app_posts');
+        return redirect()->route('app_posts')->with('error', "Votre article a été supprimer avec succés");
     }
 }
