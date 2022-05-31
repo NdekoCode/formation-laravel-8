@@ -23,6 +23,11 @@ class Post extends Model
         return $this->hasOne(Image::class);
     }
 
+    public function artist()
+    {
+        return $this->hasOneThrough(Artist::class, Image::class);
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

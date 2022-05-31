@@ -31,5 +31,9 @@
     @endforelse
     <div class="rounded-br-full bg-gray-200">
 
+        <strong>{{ $post->artist->name }}</strong>
+        <div class="h-10 w-10">
+            <img src="{{ $post->artist->avatar }}" alt="" class="rounded">
+        </div>
     </div>
 @endsection

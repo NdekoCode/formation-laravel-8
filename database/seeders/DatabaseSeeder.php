@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Comment::factory(50)->create();
         \App\Models\Video::factory(50)->create();
         \App\Models\Image::factory(50)->create();
+        \App\Models\Artist::factory(50)->create();
         \App\Models\Tag::factory(10)->create();
         \App\Models\PostTag::factory(50)->create();
     }

@@ -11,6 +11,6 @@ class Artist extends Model
 
     public function image()
     {
-        return $this->hasOneThrough(Image::class, Post::class);
+        return $this->hasOne(Image::class);
     }
 }
