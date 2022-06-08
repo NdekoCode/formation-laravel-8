@@ -18,7 +18,7 @@
                         class="decoration text-blue-300 decoration-blue-300">{{ $post['title'] }}</a></h2>
                 <div class="flex items-center justify-between">
 
-                    <small class="mb-3 text-sm text-gray-400">{{ count($post->comments) }} Commentaires</small>
+                    {{-- <small class="mb-3 text-sm text-gray-400">{{ count($post->comments) }} Commentaires</small> --}}
 
                     <small class="mb-3 text-sm text-gray-400">{{ $post->created_at->diffForHumans() }}</small>
                 </div>
