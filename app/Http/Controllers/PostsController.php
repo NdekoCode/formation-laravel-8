@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     public function posts()
     {
+        // ON retourne les derniers post et on ajoute la pagination
         $posts = Post::latest()->paginate(9);
         return view('pages.articles.articles', compact('posts'));
     }
@@ -45,7 +48,7 @@ class PostsController extends Controller
 
             $post = Post::findOrfail($id);
             $post->update($postData);
-            return redirect()->route('app_postshow', $post->id);
+            return redirect()->route('app_postshow', $post->id)->with('success', "Votre article a été modifier avec succes");
         }
         return back()->withInput();
     }
@@ -54,6 +57,22 @@ class PostsController extends Controller
     {
         $post = Post::findOrfail($id);
         $post->delete();
-        return redirect()->route('app_posts');
+        return redirect()->route('app_posts')->with('error', "Votre article a été supprimer avec succés");
+    }
+
+    public function register()
+    {
+        $post = Post::find(11);
+        $vidoe = Video::find(1);
+        $comment1 = new Comment(['content' => 'Mon premier commentaire']);
+        $comment2 = new Comment(['content' => 'Mon second commentaire']);
+        $comment3 = new Comment(['content' => 'Mon troisieme commentaire']);
+
+        $post->comments()->saveMany([
+            $comment1, $comment2
+        ]);
+        $vidoe->comments()->save($comment3);
+
+        return 'LOl';
     }
 }

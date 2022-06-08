@@ -30,6 +30,7 @@ Route::post('/posts/update/{id}', [PostsController::class, 'store_update'])->nam
 Route::post('/posts/delete/{id}', [PostsController::class, 'delete'])->name('app_deletepost');
 Route::get('/posts/{id}', [PostsController::class, 'show'])->name('app_postshow');
 Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects');
+Route::get('videos', [PostsController::class, 'register']);
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 
 

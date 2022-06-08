@@ -17,19 +17,35 @@
                 <h2 class="mb-3 text-2xl font-bold text-gray-800"><a href="{{ route('app_postshow', $post->id) }}"
                         class="decoration text-blue-300 decoration-blue-300">{{ $post['title'] }}</a></h2>
                 <div class="flex items-center justify-between">
+<<<<<<< HEAD
 
                     {{-- <small class="mb-3 text-sm text-gray-400">{{ count($post->comments) }} Commentaires</small> --}}
+=======
+                    <small class="mb-3 text-sm text-gray-400">{{ count($post->comments) }} Commentaires</small>
+>>>>>>> 797f4d2103f3227f5de7cda9da8360573e9f9d54
 
                     <small class="mb-3 text-sm text-gray-400">{{ $post->created_at->diffForHumans() }}</small>
                 </div>
-                @forelse ($post->tags as $tag)
-                    <small class="m-1 mb-3 rounded bg-blue-400 px-1 text-sm text-gray-600"><a
-                            href="#">{{ $tag->name }}</a>
-                    </small>
-                @empty
+                <div class="flex items-center justify-between">
+                    @forelse ($post->tags as $tag)
+                        <small class="m-1 mb-3 rounded bg-blue-400 p-1 text-sm text-gray-600"><a
+                                href="#">{{ $tag->name }}</a>
+                        </small>
+                    @empty
 
-                    <small class="mb-3 rounded bg-gray-400 px-1 text-sm text-gray-600">Pas de tas</small>
-                @endforelse
+                        <small class="mb-3 rounded bg-gray-400 p-1 text-sm text-gray-600">Pas de tas</small>
+                    @endforelse
+
+                    @if (!empty($post->artist))
+                        <div class="mr-auto">
+                            <div class="h-20 w-20 overflow-hidden rounded-full">
+                                <img src="{{ $post->artist->avatar }}" alt="" class="rounded-full">
+                            </div>
+                            <strong>{{ $post->artist->name }}</strong>
+
+                        </div>
+                    @endif
+                </div>
                 <p class="my-2 text-sm text-gray-600">{{ $post['content'] }}</p>
             </div>
         @empty

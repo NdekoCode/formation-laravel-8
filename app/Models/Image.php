@@ -12,4 +12,13 @@ class Image extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    /**
+     * Une relation de un à un avec une image ainsi qu'une
+     *
+     */
+    public function artist()
+    {
+        return $this->belongsTo(Artist::class);
+    }
 }
