@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -27,9 +29,16 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $postData = $request->validate(['title' => 'required|min:3|max:150', 'content' => 'required|min:5']);
+        // |unique:posts, cela veut dire que on ne veut pas avoir deux fois le meme titre dans ma table posts
+        $postData = $request->validate(['title' => 'required|min:3|max:150|unique:posts', 'image' => 'required|image', 'content' => 'required|min:5|unique:posts']);
         if ($postData) {
-            Post::create($postData);
+            $post = Post::create($postData);
+            // $path =  Storage::disk('public')->put('avatars', $request->image);
+            $filename = date('d-m-Y-H-i-s') . '.' . $request->image->extension();
+            $path = $request->image->storeAs('avatars', $filename, 'public');
+            $image = new Image();
+            $image->path = $path;
+            $post->image()->save($image);
             return redirect()->route('app_posts')->with('success', "Votre article a été ajouter");
         }
     }
@@ -42,12 +51,19 @@ class PostsController extends Controller
     public function store_update(Request $request, int $id)
     {
 
-        $postData = $request->validate(['title' => 'required|min:3|max:150', 'content' => 'required|min:5']);
+        $postData = $request->validate(['title' => 'required|min:3|max:150', 'content' => 'required|min:5', 'image' => 'image|image']);
         if ($postData) {
 
 
             $post = Post::findOrfail($id);
+            if (!empty($postData['image'])) {
+                // Update One to One relationship
+                $filename = date('Y-m-d-H-i-s') . '.' . $request->image->extension();
+                $path = $request->image->storeAs('posts', $filename, 'public');
+                $post->image->update(['path' => $path]);
+            }
             $post->update($postData);
+
             return redirect()->route('app_postshow', $post->id)->with('success', "Votre article a été modifier avec succes");
         }
         return back()->withInput();

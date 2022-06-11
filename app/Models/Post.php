@@ -18,11 +18,19 @@ class Post extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function latestOfComment()
+    {
+        return $this->hasOne(Comment::class)->latestOfMany();
+    }
     public function image()
     {
         return $this->hasOne(Image::class);
     }
 
+    /**
+     * La relation HasOneThroug pour recuperer l'artiste correspondant à l'image
+     */
     public function artist()
     {
         return $this->hasOneThrough(Artist::class, Image::class);

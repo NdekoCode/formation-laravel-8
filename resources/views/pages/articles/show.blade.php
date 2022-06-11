@@ -14,26 +14,32 @@
 
         @if (!empty($post->image->path))
             <div>
-                <img src="{{ $post->image->path }}" alt="">
+                <img src="{{ Storage::disk('public')->exists($post->image->path) ? Storage::url($post->image->path) : url($post->image->path) }}"
+                    alt="">
             </div>
         @endif
         <h2 class="mb-3 text-2xl font-bold text-gray-800">{{ $post['title'] }}</h2>
         <p class="my-2 text-sm text-gray-600">{{ $post['content'] }}</p>
     </div>
-    {{-- @forelse ($post->comments as $comment)
+    @forelse ($post->comments as $comment)
         <small class="text-sm text-gray-400">Publier le
             {{ $post->created_at->format('d / m / Y') }}, {{ $comment->created_at->diffForHumans() }}</small>
         <p>{{ $comment->content }}</p>
+
     @empty
         <div class="m-1 rounded border border-blue-500 bg-blue-200 p-2 text-blue-500">Pas de commentaire encore disponible
             sur cet article
         </div>
-    @endforelse --}}
-    <div class="rounded-br-full bg-gray-200">
-
-        <strong>{{ $post->artist->name }}</strong>
-        <div class="h-10 w-10">
-            <img src="{{ $post->artist->avatar }}" alt="" class="rounded">
+    @endforelse
+    {{-- @if (!empty($post->latestOfComment))
+        <span>Dernier commentaire:{{ $post->latestOfComment }}</span>
+    @endif --}}
+    @if (isset($post->artist))
+        <div class="rounded-br-full bg-gray-200">
+            <strong>{{ $post->artist->name }}</strong>
+            <div class="h-10 w-10">
+                <img src="{{ url($post->artist->avatar) }}" alt="" class="rounded">
+            </div>
         </div>
-    </div>
+    @endif
 @endsection
