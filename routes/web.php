@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,7 @@ Route::get('/posts/{id}', [PostsController::class, 'show'])->name('app_postshow'
 Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects');
 Route::get('videos', [PostsController::class, 'register']);
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
+Route::get('report', [ReportController::class, 'report'])->name('app_report');
 
 
 // Est ajouter avec laravel breeze
