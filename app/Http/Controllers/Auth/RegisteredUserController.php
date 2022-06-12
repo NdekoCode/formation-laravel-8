@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\UserRegisterNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -55,6 +56,9 @@ class RegisteredUserController extends Controller
         ]);
         // Une fois l'utilisateur créer il va nous créer un evenement d'enregistrement
         event(new Registered($user)); // Il dit  a l'application "un evenement à été  delencher, cet evenement concerne l'enregistrement d'un utilisateur"
+
+        // On envois une notification à l'utilisateur
+        $user->notify(new UserRegisterNotification($user));
 
         // On après l'evenement on connecte l'utilisateur
         Auth::login($user); // La façade "Auth" contient toute les fonctions et les methodes necessaire pour la maitrise du système d'authentification
