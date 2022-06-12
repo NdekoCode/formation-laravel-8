@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationNotificationMail;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,7 +35,7 @@ class UserRegisterNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail']; //Ici il va appeler la fonction toMail car il a la valeur 'mail'
+        return ['mail', 'database']; //Ici il va appeler la fonction toMail car il a la valeur 'mail'
     }
 
     /**
@@ -61,7 +60,8 @@ class UserRegisterNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'name' => $notifiable->name,
+            "email" => $notifiable->email
         ];
     }
 }
