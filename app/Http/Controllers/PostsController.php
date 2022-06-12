@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Post;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
@@ -28,11 +29,17 @@ class PostsController extends Controller
     }
     public function create()
     {
+        if (!Gate::allows('access-admin')) {
+            abort('403', "Vous devez etre un admin pour acceder à cette page");
+        }
         return view('pages.articles.create');
     }
 
     public function store(Request $request)
     {
+        if (!Gate::allows('access-admin')) {
+            abort('403', "Vous devez etre un admin pour acceder à cette page");
+        }
         // |unique:posts, cela veut dire que on ne veut pas avoir deux fois le meme titre dans ma table posts
         $postData = $request->validate(['title' => 'required|min:3|max:150|unique:posts', 'image' => 'required|image', 'content' => 'required|min:5|unique:posts']);
         if ($postData) {
@@ -49,12 +56,18 @@ class PostsController extends Controller
 
     public function update(int $id)
     {
+        if (!Gate::allows('access-admin')) {
+            abort('403', "Vous devez etre un admin pour acceder à cette page");
+        }
         $post = Post::findOrfail($id);
         return view('pages.articles.update', compact('post'));
     }
     public function store_update(Request $request, int $id)
     {
 
+        if (!Gate::allows('access-admin')) {
+            abort('403', "Vous devez etre un admin pour acceder à cette page");
+        }
         $postData = $request->validate(['title' => 'required|min:3|max:150', 'content' => 'required|min:5', 'image' => 'image|image']);
         if ($postData) {
 
@@ -75,6 +88,9 @@ class PostsController extends Controller
 
     public function delete(int $id)
     {
+        if (!Gate::allows('access-admin')) {
+            abort('403', "Vous devez etre un admin pour acceder à cette page");
+        }
         $post = Post::findOrfail($id);
         $post->delete();
         return redirect()->route('app_posts')->with('error', "Votre article a été supprimer avec succés");
