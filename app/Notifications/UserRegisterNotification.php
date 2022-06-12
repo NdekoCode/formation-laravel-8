@@ -4,9 +4,11 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationNotificationMail;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class UserRegisterNotification extends Notification
 {
@@ -46,10 +48,7 @@ class UserRegisterNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line("{$notifiable->name} Votre compte a été créer avec succés")
-            ->action('Voir les articles', url('/posts'))
-            ->line('Merci d\'etre avec BongobTrust');
+        return (new RegistrationNotificationMail($notifiable))->to($notifiable->email);
     }
 
     /**
