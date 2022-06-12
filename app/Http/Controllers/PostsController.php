@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['posts', 'show']);
+    }
     public function posts()
     {
         // ON retourne les derniers post et on ajoute la pagination

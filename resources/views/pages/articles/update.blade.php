@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout', ['title' => 'Modifier ' . $post->title])
 @section('content')
     <div class="m-1 p-3 shadow">
         {{-- <div class="m-2 rounded border-red-400 bg-red-200 p-2 text-red-500">ol</div> --}}

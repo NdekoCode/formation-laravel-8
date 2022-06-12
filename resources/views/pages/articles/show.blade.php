@@ -1,15 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.layout', ['title' => $post->title])
 @section('content')
-    <div class="flex items-center justify-between">
-        <form action="{{ route('app_deletepost', $post->id) }}" method="post">
-            @csrf
-            <button type="submit" class="text-decoration-none mx-2 mt-2 rounded bg-red-600 px-3 py-2 text-white"
-                onclick="return confirm('voulez-vous vraiment supprimer {{ $post->title }}')">Supprimer
-                l'article</button>
-        </form>
-        <a href="{{ route('app_postupdate', $post->id) }}"
-            class="text-decoration-none mx-2 mt-2 rounded bg-blue-700 px-3 py-2 text-white">Modifier le post</a>
-    </div>
+    @auth
+
+        <div class="flex items-center justify-between">
+            <form action="{{ route('app_deletepost', $post->id) }}" method="post">
+                @csrf
+                <button type="submit" class="text-decoration-none mx-2 mt-2 rounded bg-red-600 px-3 py-2 text-white"
+                    onclick="return confirm('voulez-vous vraiment supprimer {{ $post->title }}')">Supprimer
+                    l'article</button>
+            </form>
+            <a href="{{ route('app_postupdate', $post->id) }}"
+                class="text-decoration-none mx-2 mt-2 rounded bg-blue-700 px-3 py-2 text-white">Modifier le post</a>
+        </div>
+    @endauth
     <div class="m-1 p-3 shadow">
 
         @if (!empty($post->image->path))

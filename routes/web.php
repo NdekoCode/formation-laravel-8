@@ -33,5 +33,6 @@ Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects
 Route::get('videos', [PostsController::class, 'register']);
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 
+
 // Est ajouter avec laravel breeze
 require __DIR__ . '/auth.php';
