@@ -24,11 +24,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/posts', [PostsController::class, 'posts'])->name('app_posts');
-Route::get('/posts/create', [PostsController::class, 'create'])->name('app_postscreate');
-Route::post('/posts/create', [PostsController::class, 'store'])->name('app_poststore');
-Route::get('/posts/update/{id}', [PostsController::class, 'update'])->name('app_postupdate');
-Route::post('/posts/update/{id}', [PostsController::class, 'store_update'])->name('app_storeupdate');
-Route::post('/posts/delete/{id}', [PostsController::class, 'delete'])->name('app_deletepost');
+
+// Un groupe de groupe qui requierent une authentification
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/posts/create', [PostsController::class, 'create'])->name('app_postscreate');
+    Route::post('/posts/create', [PostsController::class, 'store'])->name('app_poststore');
+    Route::get('/posts/update/{id}', [PostsController::class, 'update'])->name('app_postupdate');
+    Route::post('/posts/update/{id}', [PostsController::class, 'store_update'])->name('app_storeupdate');
+    Route::post('/posts/delete/{id}', [PostsController::class, 'delete'])->name('app_deletepost');
+});
+
 Route::get('/posts/{id}', [PostsController::class, 'show'])->name('app_postshow');
 Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects');
 Route::get('videos', [PostsController::class, 'register']);
