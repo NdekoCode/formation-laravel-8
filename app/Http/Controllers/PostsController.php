@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Image;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Image;
 use App\Models\Video;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Events\PostCreatedEvent;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,9 +31,6 @@ class PostsController extends Controller
     }
     public function create()
     {
-        if (!Gate::allows('access-admin')) {
-            abort('403', "Vous devez etre un admin pour acceder à cette page");
-        }
         return view('pages.articles.create');
     }
 
@@ -47,6 +46,11 @@ class PostsController extends Controller
             $image = new Image();
             $image->path = $path;
             $post->image()->save($image);
+            // On envois un evenement pour la création du post
+            $users = User::all();
+            foreach ($users as $user) {
+                event(new PostCreatedEvent($post, $user));
+            }
             return redirect()->route('app_posts')->with('success', "Votre article a été ajouter");
         }
     }

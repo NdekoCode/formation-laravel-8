@@ -64,7 +64,7 @@
             </div>
         @endforelse
     </div>
-    <div>
+    <div class="mb-5 bg-white">
         {{ $posts->links() }}
     </div>
 @endsection
