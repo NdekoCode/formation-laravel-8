@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\Models\Post;
+use App\Models\Blog\Post;
 use Illuminate\View\Component;
 
 class CardPostComponent extends Component

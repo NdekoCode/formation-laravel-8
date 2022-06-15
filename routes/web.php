@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostsController;
-use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\Blog\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +41,10 @@ Route::get('videos', [PostsController::class, 'register']);
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 Route::get('report', [ReportController::class, 'report'])->name('app_report');
 
-Route::resource('events', 'App\Http\Controllers\EventsController');
+Route::group(['middleware' => 'auth', 'prefix' => 'evenement'], function () {
+
+    Route::resource('events', 'App\Http\Controllers\EventsController');
+});
 
 
 // Est ajouter avec laravel breeze

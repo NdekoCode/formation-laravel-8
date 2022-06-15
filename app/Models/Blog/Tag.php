@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artist extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    public function image()
+    public function posts()
     {
-        return $this->hasOne(Image::class);
+        return $this->belongsToMany(Post::class);
     }
 }

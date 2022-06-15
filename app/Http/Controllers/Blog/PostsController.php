@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
-use App\Models\Post;
+use App\Models\Blog\Post;
 use App\Models\User;
-use App\Models\Image;
-use App\Models\Video;
-use App\Models\Comment;
+use App\Models\Blog\Image;
+use App\Models\Blog\Video;
+use App\Models\Blog\Comment;
 use Illuminate\Http\Request;
 use App\Events\PostCreatedEvent;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
