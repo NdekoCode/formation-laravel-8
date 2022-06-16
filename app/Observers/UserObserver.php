@@ -6,6 +6,7 @@ use App\Models\User;
 
 class UserObserver
 {
+    // created,updated, deleted,forceDeleted, restored, creating, updating, deleting, forceDeleting, restoring
     /**
      * Handle the User "created" event.
      *
@@ -14,7 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        //
+        dd('Utilisateur  créer ' . $user->name);
     }
 
     /**

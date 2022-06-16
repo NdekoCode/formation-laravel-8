@@ -2,8 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Blog\Post;
-use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -12,20 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PostCreatedEvent
+class UserCreatingEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $post;
-    public $user;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Post $post, User $user)
+    public function __construct()
     {
-        $this->post = $post;
-        $this->user = $user;
+        //
     }
 
     /**
