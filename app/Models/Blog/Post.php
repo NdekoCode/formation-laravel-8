@@ -10,8 +10,6 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['title', 'content'];
-    protected $dispatchesEvents = [];
-
     /**
      * Relation polymorphique de type One to Many avec les commentaire càd un post a plusieurs commentaires et un commentaire appartient à un seul post(article)
      *

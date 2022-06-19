@@ -2,14 +2,17 @@
 
 namespace App\Providers;
 
-use App\Events\PostCreatedEvent;
-use App\Listeners\SendPostCreatedListener;
 use App\Models\User;
+use App\Models\Blog\Post;
+use App\Observers\PostObserver;
 use App\Observers\UserObserver;
+use App\Events\PostCreatedEvent;
+use App\Events\UserCreatingEvent;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\UserCreatingListener;
+use App\Listeners\SendPostCreatedListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PostCreatedEvent::class => [
             SendPostCreatedListener::class
+        ],
+        UserCreatingEvent::class => [
+            UserCreatingListener::class
         ]
     ];
 
@@ -35,5 +41,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        Post::observe(PostObserver::class);
     }
 }
