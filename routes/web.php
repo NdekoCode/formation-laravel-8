@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\Blog\PostsController;
+use App\Http\Controllers\DonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::get('projects', [ProjectsController::class, 'index'])->name('app_projects
 Route::get('videos', [PostsController::class, 'register']);
 Route::get('contact', [HomeController::class, 'contact'])->name('app_contact');
 Route::get('report', [ReportController::class, 'report'])->name('app_report');
+
+Route::resource('donations', DonationController::class);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'evenement'], function () {
 

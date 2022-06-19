@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\StripeService;
+
 return [
 
     /*
@@ -174,6 +176,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /** Custom service provider , pour que laravel puisse l'installer automatiquement lors de son instanciation*/
+        App\Providers\StripeServiceProvider::class,
 
     ],
 
