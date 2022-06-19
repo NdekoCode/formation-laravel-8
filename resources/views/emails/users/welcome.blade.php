@@ -1,7 +1,7 @@
 @component('mail::message')
 # Bienvenus sur notre site
 
-Bienvenus sur notre application Laravel
+Bienvenus **{{ $user->name }}** sur notre site Web
 
 @component('mail::button', ['url' => '/'])
 Accuiel du site
