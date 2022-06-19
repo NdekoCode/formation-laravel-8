@@ -1,11 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Blog;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VideoFactory extends Factory
 {
+    protected $model = '\App\Models\Blog\Video';
+
     /**
      * Define the model's default state.
      *

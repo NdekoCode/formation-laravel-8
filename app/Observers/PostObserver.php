@@ -14,7 +14,7 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        dd("Post {$post->title} créer  avec succés");
+        // dd("Post {$post->title} créer  avec succés");
     }
 
     /**

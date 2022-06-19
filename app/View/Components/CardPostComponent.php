@@ -25,6 +25,6 @@ class CardPostComponent extends Component
      */
     public function render()
     {
-        return view('components.card-post-component');
+        return view('components.card-post-component', ['post' => $this->post]);
     }
 }
