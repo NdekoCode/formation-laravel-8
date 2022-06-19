@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\OrderService;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,10 @@ class DonationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(StripeService $stripeService)
+    public function index(StripeService $stripeService, OrderService $orderService)
     {
-        dd($stripeService);
         $stripeService->charge(123);
+        $orderService->discount();
     }
 
     /**

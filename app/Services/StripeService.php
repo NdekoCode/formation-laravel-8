@@ -6,6 +6,7 @@ namespace App\Services;
 class StripeService
 {
     public $key;
+    public $amount;
 
     public function __construct(string $key)
     {
@@ -13,6 +14,7 @@ class StripeService
     }
     public function charge($amount)
     {
-        dump('Montant chargé: ' . $amount);
+        $this->amount = $amount * rand(1, 10);
+        dump('Montant chargé: ' . $this->amount);
     }
 }

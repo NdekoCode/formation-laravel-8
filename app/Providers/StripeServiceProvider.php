@@ -14,7 +14,9 @@ class StripeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(StripeService::class, fn () => new StripeService(env('STRIPE_KEY')));
+        // En utilisant $this->app->bind, on aura une nouvelle instance de "StripeService" à chaque execution de du controller "DonationController" ou un controller qui fait appel à "StripeService"
+        // Pour avoir une instance commune il faut utiliser plutot $this->app->singleton()
+        $this->app->singleton(StripeService::class, fn () => new StripeService(env('STRIPE_KEY')));
     }
 
     /**
