@@ -13,8 +13,9 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
+        $categories = ['blog', 'mangas', 'web', 'girl', 'man', 'brazil', 'rio', 'dog', 'technology', 'computer', 'science', 'programming', 'developer', 'navigator'];
         return [
-            'path' => 'https://picsum.photos/id/' . $this->faker->unique()->numberBetween(237, 550) . '/1200/540',
+            'path' => "https://loremflickr.com/1248/832/{$categories[$this->faker->numberBetween(0, count($categories) - 1)]}/?lock={$this->faker->unique()->numberBetween(237, 525)}&random={$this->faker->numberBetween(1, count($categories) - 1)}",
             'post_id' => $this->faker->unique()->numberBetween(1, 50),
         ];
     }

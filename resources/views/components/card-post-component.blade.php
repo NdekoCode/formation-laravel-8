@@ -1,4 +1,4 @@
-<div class="mb-5 max-w-sm rounded-lg border border-gray-200 bg-white shadow-md">
+<div class="max-w-sm mb-5 bg-white border border-gray-200 rounded-lg shadow-md">
     <a href="{{ route('app_postshow', $post->id) }}" class="min-h-[100px] overflow-hidden">
         <img class="rounded-t-lg"
             src="{{ Storage::disk('public')->exists($post->image->path) ? Storage::url($post->image->path) : url($post->image->path) }}"
@@ -6,18 +6,18 @@
     </a>
 
     <div class="p-5">
-        <div class="mb-3 flex items-center justify-between">
+        <div class="flex items-center justify-between mb-3">
             <small class="mb-3 text-sm text-gray-400">{{ count($post->comments) }} Commentaires</small>
 
             <small class="mb-3 text-sm text-gray-400">{{ $post->created_at->diffForHumans() }}</small>
         </div>
         <div class="flex items-center">
             @forelse ($post->tags as $tag)
-                <small class="m-1 mb-3 rounded bg-blue-400 p-1 text-sm text-gray-600"><a href="#">{{ $tag->name }}</a>
+                <small class="p-1 m-1 mb-3 text-sm text-gray-600 bg-blue-400 rounded"><a href="#">{{ $tag->name }}</a>
                 </small>
             @empty
 
-                <small class="mb-3 rounded bg-gray-400 p-1 text-sm text-gray-600">Pas de tas</small>
+                <small class="p-1 mb-3 text-sm text-gray-600 bg-gray-400 rounded">Pas de tas</small>
             @endforelse
         </div>
         <a href="{{ route('app_postshow', $post->id) }}">
@@ -32,8 +32,8 @@
             @endif
         </p>
 
-        <a class="mt-3 inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
-            href="#">
+        <a class="inline-flex items-center px-3 py-2 mt-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
+            href="{{ route('app_postshow', $post->id) }}">
             Read more
         </a>
     </div>

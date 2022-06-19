@@ -21,6 +21,9 @@ class PostsController extends Controller
     }
     public function posts()
     {
+        // $post = Video::find(32);
+        // dump($post->comments);
+        // die();
         // ON retourne les derniers post et on ajoute la pagination
         $posts = Post::latest()->paginate(9);
         return view('pages.articles.articles', compact('posts'));

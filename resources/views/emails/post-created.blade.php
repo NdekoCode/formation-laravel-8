@@ -196,7 +196,7 @@
                 <h1 class="title-1">Confirmation de la création de compte</h1>
                 <article class="article">
                     <p>{{ intval(date('H')) > 12 ? 'Bonsoir' : 'Bonjour' }} <strong>{{ $user->name }}</strong></p>
-                    <p>Nous avons publier un nouveau l'article <strong>{{ $post->title }} qui est très intéressant,
+                    <p>Nous avons publier un nouveau l'article <strong><a href="{{ route('app_postshow', $post->id) }}">{{ $post->title }}</a></strong> qui est très intéressant,
                             veuillez le lire pour nous faire par de vos retours</strong></p>
                     <footer class="mail__footer">
                         <p>Merci & Cordialement,</p>

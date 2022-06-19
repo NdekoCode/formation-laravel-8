@@ -5,15 +5,15 @@
         <div class="flex items-center justify-between">
             <form action="{{ route('app_deletepost', $post->id) }}" method="post">
                 @csrf
-                <button type="submit" class="text-decoration-none mx-2 mt-2 rounded bg-red-600 px-3 py-2 text-white"
+                <button type="submit" class="px-3 py-2 mx-2 mt-2 text-white bg-red-600 rounded text-decoration-none"
                     onclick="return confirm('voulez-vous vraiment supprimer {{ $post->title }}')">Supprimer
                     l'article</button>
             </form>
             <a href="{{ route('app_postupdate', $post->id) }}"
-                class="text-decoration-none mx-2 mt-2 rounded bg-blue-700 px-3 py-2 text-white">Modifier le post</a>
+                class="px-3 py-2 mx-2 mt-2 text-white bg-blue-700 rounded text-decoration-none">Modifier le post</a>
         </div>
     @endauth
-    <div class="m-1 p-3 shadow">
+    <div class="p-3 m-1 shadow">
 
         @if (!empty($post->image->path))
             <div>
@@ -30,17 +30,14 @@
         <p>{{ $comment->content }}</p>
 
     @empty
-        <div class="m-1 rounded border border-blue-500 bg-blue-200 p-2 text-blue-500">Pas de commentaire encore disponible
+        <div class="p-2 m-1 text-blue-500 bg-blue-200 border border-blue-500 rounded">Pas de commentaire encore disponible
             sur cet article
         </div>
     @endforelse
-    {{-- @if (!empty($post->latestOfComment))
-        <span>Dernier commentaire:{{ $post->latestOfComment }}</span>
-    @endif --}}
     @if (isset($post->artist))
-        <div class="rounded-br-full bg-gray-200">
+        <div class="bg-gray-200 rounded-br-full">
             <strong>{{ $post->artist->name }}</strong>
-            <div class="h-10 w-10">
+            <div class="w-10 h-10">
                 <img src="{{ url($post->artist->avatar) }}" alt="" class="rounded">
             </div>
         </div>
